@@ -1,29 +1,21 @@
-
 console.log("TITLE: ROCK PAPER SCISSORS!!");
-let playerInput;
 
-
-const convInput = {                 
-    'r': 'Rock',
-    'p': 'Paper',
-    's': 'Scissors'
-}
-
-let playerSelection = playerChoice();
-let computerSelection = computerPlay();
 game();
 
 function game(){
     for(let i = 0; i<5; i++){
+        let playerSelection = playerChoice();
+        let computerSelection = computerPlay();
         console.log(playRound(playerSelection,computerSelection));
-        playerSelection = playerChoice();
-        computerSelection = computerPlay();
     }
-    console.log("GAME ENDED");
+    console.log("GAME OVER");
+    alert("GAME OVER")
 }
 
 function playRound(playerSelection, computerSelection) {
-    
+
+    const convInput = {'r': 'Rock', 'p': 'Paper', 's': 'Scissors'}
+
     switch(playerSelection) {
         case 'r': 
             console.log(`Player chose ${convInput[playerSelection]} and Computer chose ${convInput[computerSelection]}!`);
@@ -58,7 +50,7 @@ function playRound(playerSelection, computerSelection) {
         };
 }
   
-function playerChoice() {
+function playerChoice() {                                                           // takes only the 1st letter regardless of input typed and verifies whether it is an acceptable selection
     let choice = prompt("Enter rock, paper or scissors!").toLowerCase().charAt(0);
 
     while(choice != "r" && choice != "p" && choice != "s"){          
@@ -69,9 +61,8 @@ function playerChoice() {
     return choice;
 }
 
-
 function computerPlay(){                                                    // converts and returns a randomly generated number into one of the 3 string choices from 'selection[]'
     const selection = ['r', 'p', 's'];
-    let randomNumber = Math.floor(Math.random()*3) + 1;
-    return selection[randomNumber-1];
+    let randomNumber = Math.floor(Math.random()*3) ;
+    return selection[randomNumber];
 }
